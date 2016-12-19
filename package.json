@@ -1,0 +1,35 @@
+{
+  "name": "blogmea2npart1",
+  "version": "1.0.0",
+  "description": "this is the first part of a simple blog app with mean",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://morganster@github.com/morganster/blogmea2npart1.git"
+  },
+  "keywords": [
+    "angular",
+    "2",
+    "mean"
+  ],
+  "author": "Carlos Eduardo Jaramillo L",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morganster/blogmea2npart1/issues"
+  },
+  "homepage": "https://github.com/morganster/blogmea2npart1#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jwt-simple": "^0.5.1",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.7.1",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1"
+  }
+}
