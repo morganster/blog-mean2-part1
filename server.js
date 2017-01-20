@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var express = require('express');
 var app = express();
+var path = require('path'); //
 //-------------------config--------------------
 //config files
 var db = require('./config/db');
@@ -25,20 +26,29 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 // set the static files location /public/img will be /img for users
-app.use(express.static(__dirname + '/public'));
-//logging
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules'))) //node modules serving
+app.use('/public', express.static(path.join(__dirname, 'public'))) //angular files serving
 app.use(morgan('dev'));
+
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE');
+    next();
+});
 
 
 // routes ==================================================
 require('./api/routes')(app); // configure our routes
 
+
+
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);
 
-// shoutout to the user                     
+// shoutout to the user
 console.log('rocking on ' + port);
 
-// expose app           
+// expose app
 exports = module.exports = app;

@@ -4,6 +4,8 @@
 var userController = require('./controllers/user');
 var postController = require('./controllers/post');
 var authController = require('./controllers/auth');
+var path = require('path');
+
 
 module.exports = function(app) {
     // set the api routes
@@ -33,11 +35,11 @@ module.exports = function(app) {
 
 
 
-
     // frontend routes =========================================================
     // route to handle all angular requests
     app.get('*', function(req, res) {
-        res.sendfile('./public/app/index.html'); // load our public/index.html file
+        res.sendfile('./public/index.html'); // load our public/index.html file
     });
+
 
 };

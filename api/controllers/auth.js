@@ -5,13 +5,15 @@ var conf = require('../../config/jwt');
 var Strategy = passportJwt.Strategy;
 var Extract = passportJwt.ExtractJwt;
 var jwt = require("jwt-simple");
+var mongoose = require('mongoose');
 var params = {
     secretOrKey: conf.jwtSecret,
-    jwtFromRequest: Extract.fromAuthHeader()
+    jwtFromRequest: Extract.fromAuthHeader(),
 };
 
 var strategy = new Strategy(params, function(payload, done) {
-    User.findOne({ '_id': payload.id }, function(err, user) {
+
+    User.findOne({ _id: payload.id }, function(err, user) {
         if (err) {
             return done(new Error("no user found"), null);
         } else {
@@ -46,11 +48,12 @@ exports.login = function(req, res) {
                     var token = jwt.encode(payload, conf.jwtSecret);
                     res.json({ token: token });
                 } else {
-                    res.sendStatus(401);
+                    res.status(500);
                 }
             });
         } else {
-            res.sendStatus(401);
+            res.status(200);
+            res.json({ error: 'Bad Credentials..' });
         }
     });
 };

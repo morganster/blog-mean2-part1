@@ -33,10 +33,10 @@ exports.getUsers = function(req, res) {
 exports.setupUser = function(req, res) {
     var mates = new User({
         name: 'Edward Teach',
-        username: 'blackbeard',
+        username: 'blackbeard3',
         password: 'oak island'
     });
-
+    //586eba2ad6c69420809e2862
 
     mates.save(function(err, user) {
         if (err) res.send(err);
